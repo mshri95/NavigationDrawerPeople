@@ -1,0 +1,7 @@
+
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(²Ú±Ž8”ŸµÕØ,
+rsquid:S1450"VRemove the "toolbar" field and declare it as a local variable in the relevant methods.(þ®º—8”ŸµÕØ,
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Œ±¹ªüÿÿÿÿ8”ŸµÕØ,
+zsquid:S1450"YRemove the "navigation" field and declare it as a local variable in the relevant methods.(é£óŽþÿÿÿÿ8”ŸµÕØ,
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ó¢‚ù8”ŸµÕØ,
+|squid:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(Ò“ÿšùÿÿÿÿ8”ŸµÕØ,
