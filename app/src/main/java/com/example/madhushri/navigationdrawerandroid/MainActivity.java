@@ -1,5 +1,7 @@
 package com.example.madhushri.navigationdrawerandroid;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +15,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
+
+import static android.view.View.TRANSLATION_Y;
+import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -58,40 +65,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
                 relativeLayout.setBackground(getDrawable(R.drawable.relativebackground));
-                relativeLayout.setTranslationX(slideOffset * drawerView.getWidth());
-                relativeLayout.setTranslationY(212);
-//                for (int i = 0; i < relativeLayout.getHeight() / 6; i += 8) {
-//                    relativeLayout.setTranslationX(i);
-//                    relativeLayout.setTranslationY(i);
-                //Animation trial
-               // TranslateAnimation anim = new TranslateAnimation(i, 0, i, 0);
-//                        anim.setInterpolator((new AccelerateDecelerateInterpolator()));
-//                        anim.setDuration(500);
-//                        relativeLayout.startAnimation(anim);
-//                }
+              //  relativeLayout.setTranslationX(slideOffset * drawerView.getWidth());
+              //  relativeLayout.setTranslationY(212);
+//                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slide_from_corner);
+//                relativeLayout.startAnimation(animation);
+                PropertyValuesHolder pvhX = PropertyValuesHolder.ofFloat("translationX", slideOffset * drawerView.getWidth());
+                PropertyValuesHolder pvhY = PropertyValuesHolder.ofFloat("translationY", 200f);
+                ObjectAnimator animation = ObjectAnimator.ofPropertyValuesHolder(relativeLayout,pvhX,pvhY);
+                animation.setDuration(0);
+                animation.start();
+
                 actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
                 actionBar.setBackgroundDrawable(getDrawable(R.drawable.action_bar_background));
                 drawerLayout.bringChildToFront(drawerView);
                 drawerLayout.requestLayout();
                 drawerLayout.setScrimColor(Color.TRANSPARENT);
                 if (isDrawerOpened) {
-                    relativeLayout.setTranslationX(drawerView.getTranslationX());
-                    relativeLayout.setTranslationY(drawerView.getTranslationY());
-
-                    //for (int i = relativeLayout.getHeight() / 6; i >0 ; i -= 8) {
-//                    relativeLayout.setTranslationX(i);
-//                    relativeLayout.setTranslationY(i);
-                        //Animation trial
-                        // TranslateAnimation anim = new TranslateAnimation(0, i, 0, i);
-//                        anim.setInterpolator((new AccelerateDecelerateInterpolator()));
-//                        anim.setDuration(500);
-//                        relativeLayout.startAnimation(anim);
-//                }
-//                    DrawerLayout.LayoutParams layoutParams=new DrawerLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//                    layoutParams.setMargins(0,0,0,0);
-//                    relativeLayout.setLayoutParams(layoutParams);
+//                    relativeLayout.setTranslationX(drawerView.getTranslationX());
+//                    relativeLayout.setTranslationY(drawerView.getTranslationY());
+                    PropertyValuesHolder pvhX1 = PropertyValuesHolder.ofFloat("translationX", slideOffset * drawerView.getWidth());
+                    PropertyValuesHolder pvhY1 = PropertyValuesHolder.ofFloat("translationY", slideOffset*drawerView.getHeight()/200f);
+                    ObjectAnimator animation1 = ObjectAnimator.ofPropertyValuesHolder(relativeLayout,pvhX1,pvhY1);
+                    animation1.setDuration(0);
+                    animation1.start();
                     relativeLayout.setBackground(getDrawable(R.drawable.backtonormal));
-
                 }
                 super.onDrawerSlide(drawerView, slideOffset);
             }
